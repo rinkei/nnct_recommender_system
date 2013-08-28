@@ -11,6 +11,11 @@ Recommender::Application.routes.draw do
   get  'signup' => 'authentication#new'
   post 'signup' => 'authentication#create'
 
+  # Session
+  get    'signin'  => 'session#new'
+  post   'signin'  => 'session#create'
+  delete 'signout' => 'session#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
