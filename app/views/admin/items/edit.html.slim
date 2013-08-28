@@ -1,0 +1,9 @@
+h1 Editing item
+
+= simple_form_for(@item, url: admin_item_path(@item), method: "patch") do |f|
+  == render partial: 'form', locals: { f: f }
+
+= link_to 'Show', admin_item_path(@item)
+'|
+= link_to 'Back', admin_items_path
+
