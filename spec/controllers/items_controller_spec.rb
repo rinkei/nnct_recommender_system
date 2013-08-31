@@ -42,7 +42,7 @@ describe ItemsController do
       end
 
       it "create a seeing for the touch." do
-        Seeing.should_receive(:create!)
+        SeeingPage.should_receive(:create!)
         get :show, {id: item.to_param}
       end
 

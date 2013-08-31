@@ -1,0 +1,2 @@
+class SeeingPage < Seeing
+end
