@@ -19,31 +19,38 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ItemsController do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Item. As you add validations to Item, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ItemsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:item){ FactoryGirl.create(:item) }
 
   describe "GET index" do
     it "assigns all items as @items" do
-      item = Item.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {}
       assigns(:items).should eq([item])
     end
   end
 
   describe "GET show" do
     it "assigns the requested item as @item" do
-      item = Item.create! valid_attributes
-      get :show, {:id => item.to_param}, valid_session
+      get :show, {:id => item.to_param}
       assigns(:item).should eq(item)
     end
+
+    describe "when a user is sign in" do
+      let(:user){ FactoryGirl.create(:user) }
+
+      before(:each) do
+        session[:user_id] = user.id
+      end
+
+      it "create a seeing for the touch." do
+        Seeing.should_receive(:create!)
+        get :show, {id: item.to_param}
+      end
+
+      it "create touch of a current user and an item." do
+        Touch.should_receive(:create!)
+        get :show, {id: item.to_param}
+      end
+    end 
   end
 
 end

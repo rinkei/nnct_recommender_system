@@ -44,7 +44,15 @@ describe SessionController do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested user session"
+    before(:each) do
+      user = FactoryGirl.create(:user)
+      session[:user_id] = user.id
+    end
+
+    it "destroys the requested user's session" do
+      delete :destroy
+      assigns(:current_user).should be_nil
+    end
 
     it "redirects to root" do
       delete :destroy
