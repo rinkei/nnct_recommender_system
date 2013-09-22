@@ -1,3 +1,3 @@
 class Seeing < ActiveRecord::Base
-  has_one :touch, :as => :reaction
+  belongs_to :touch
 end

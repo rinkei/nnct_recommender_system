@@ -13,8 +13,8 @@ class ItemsController < ApplicationController
   def show
     if current_user
       ActiveRecord::Base.transaction do
-        @seeing_page = SeeingPage.create!
-        Touch.create!(user: current_user, item: @item, reaction: @seeing_page)
+        @touch = Touch.create!(user: current_user, item: @item)
+        SeeingPage.create!(touch: @touch)
       end
     end
   end

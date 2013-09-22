@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130830153917) do
+ActiveRecord::Schema.define(version: 20130903020444) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -23,13 +23,12 @@ ActiveRecord::Schema.define(version: 20130830153917) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "touch_id"
   end
 
   create_table "touches", force: true do |t|
     t.integer  "user_id"
     t.integer  "item_id"
-    t.integer  "reaction_id"
-    t.string   "reaction_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
