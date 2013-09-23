@@ -4,4 +4,9 @@ p
   strong Name:
   = @item.name
 
+= form_for @rating, url: item_ratings_path(@item), method: 'post' do |f|
+  = f.text_field :type
+  = f.number_field :value
+  = f.submit
+
 = link_to 'Back', items_path

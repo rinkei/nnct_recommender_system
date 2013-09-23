@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe "items/show" do
   before(:each) do
-    @item = assign(:item, stub_model(Item,
-      :name => "Name"
-    ))
+    @item = assign(:item, stub_model(Item, :name => "Name"))
+    @rating = assign(:rating, stub_model(Rating))
   end
 
   it "renders attributes in <p>" do

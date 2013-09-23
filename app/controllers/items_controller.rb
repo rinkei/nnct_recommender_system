@@ -11,6 +11,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @rating = Rating.new
+
     if current_user
       ActiveRecord::Base.transaction do
         @touch = Touch.create!(user: current_user, item: @item)

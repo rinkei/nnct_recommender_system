@@ -1,0 +1,2 @@
+class GeneralRating < Rating
+end

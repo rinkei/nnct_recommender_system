@@ -11,7 +11,7 @@ describe "items/index" do
       )
     ])
     user = FactoryGirl.create(:user)
-    view.stub!(:current_user).and_return(user)
+    view.stub(:current_user).and_return(user)
   end
 
   it "renders a list of items" do

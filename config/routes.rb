@@ -1,10 +1,13 @@
 Recommender::Application.routes.draw do
   root to: "items#index"
 
-  resources :items, only: %w(index show)
+  resources :items, only: %w(index show) do
+    resources :ratings, only: %w(create)
+  end
 
   namespace :admin do
     resources :items
+    resources :ratings
   end
 
   # Authentication
