@@ -1,0 +1,2 @@
+class UsabilityRating < Rating
+end
