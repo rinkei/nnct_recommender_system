@@ -4,9 +4,24 @@ p
   strong Name:
   = @item.name
 
-= form_for @rating, url: item_ratings_path(@item), method: 'post' do |f|
-  = f.text_field :type
-  = f.number_field :value
-  = f.submit
+.rating
+  .general_rating
+    h2 総合評価
+    - %w(とても良い 良い ふつう 悪い とても悪い).each_with_index do |val_text, i|
+      .rate
+        = link_to val_text, item_ratings_path(@item, rating: {type: "GeneralRating", value: (5 - i)}), method: 'post'
+
+  .usability_rating
+    h2 ユーザビリティ（使いやすさ）
+    - %w(とても良い 良い ふつう 悪い とても悪い).each_with_index do |val_text, i|
+      .rate
+        = link_to val_text, item_ratings_path(@item, rating: {type: "UsabilityRating", value: (5 - i)}), method: 'post'
+
+  .looks_rating
+    h2 デザイン（見た目）
+    - %w(とても良い 良い ふつう 悪い とても悪い).each_with_index do |val_text, i|
+      .rate
+        = link_to val_text, item_ratings_path(@item, rating: {type: "LooksRating", value: (5 - i)}), method: 'post'
+
 
 = link_to 'Back', items_path
