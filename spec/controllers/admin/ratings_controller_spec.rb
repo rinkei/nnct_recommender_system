@@ -20,4 +20,7 @@ describe Admin::RatingsController do
       assigns(:ratings).should_not include(looks_rating)
     end
   end
+
+  describe "GET csv" do
+  end
 end

@@ -1,5 +1,5 @@
 class Admin::RatingsController < Admin::BaseController
-  before_action :rating_condition, only: %w(search)
+  before_action :rating_condition, only: %w(search csv)
 
   def index
     @ratings = Rating.all
@@ -11,6 +11,11 @@ class Admin::RatingsController < Admin::BaseController
     @rating_condition = RatingCondition.new(rating_condition)
 
     render 'index'
+  end
+
+  def csv
+    csv_file = Rating.export_csv(rating_condition)
+    send_data csv_file, type: 'text/csv', filename: "ratings.csv"
   end
 
   private

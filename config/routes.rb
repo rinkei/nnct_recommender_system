@@ -10,6 +10,7 @@ Recommender::Application.routes.draw do
     resources :ratings, only: %w(index) do
       collection do
         get 'search'
+        get 'csv'
       end
     end
   end

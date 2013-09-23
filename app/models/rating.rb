@@ -22,4 +22,46 @@ class Rating < ActiveRecord::Base
 
     where(cond)
   end
+
+  def self.export_csv(params)
+    require 'csv'
+    require 'kconv'
+
+    ratings = search_by_condition(params)
+    header = create_csv_header
+    file = CSV.generate(headers: header, write_headers: true, force_quotes: true) do |csv|
+      ratings.each do |rating|
+        line = []
+        line << Rating.nil_to_str(rating.item.name)
+        line << Rating.nil_to_str(rating.user.email)
+        line << Rating.nil_to_str(rating.type)
+        line << Rating.nil_to_str(rating.value)
+        csv << line
+      end
+    end
+
+    file
+  end
+
+  def self.create_csv_header
+    header = []
+    header << 'Item'
+    header << 'User'
+    header << 'Type'
+    header << 'Value'
+    header
+  end
+
+  def self.nil_to_str(value)
+    case value
+    when nil
+      ""
+    when Date
+      value.strftime("%Y/%m/%d")
+    when DateTime
+      value.strftime("%Y/%m/%d %H")
+    else
+      value.to_s
+    end
+  end
 end

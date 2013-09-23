@@ -1,5 +1,7 @@
 h1 Listing ratings
 
+= link_to 'CSV', csv_admin_ratings_path(rating_condition: @rating_condition.to_hash)
+
 = simple_form_for @rating_condition, url: search_admin_ratings_path, method: 'get' do |f|
   = f.select :type, Rating::DESCENDANTS, include_blank: true
   = f.input :top, as: :integer
