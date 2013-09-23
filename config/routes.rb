@@ -7,7 +7,11 @@ Recommender::Application.routes.draw do
 
   namespace :admin do
     resources :items
-    resources :ratings
+    resources :ratings, only: %w(index) do
+      collection do
+        get 'search'
+      end
+    end
   end
 
   # Authentication
