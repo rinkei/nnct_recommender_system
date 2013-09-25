@@ -1,11 +1,7 @@
-h1 Listing items
+h1 = t('action.items.index')
 
-table
-  tr
-    th Name
-    th
-
+.list.items_list
   - @items.each do |item|
-    tr
-      td = item.name
-      td = link_to 'Show', item
+    .item
+      h2.title
+        = link_to item.name, item

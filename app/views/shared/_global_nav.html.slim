@@ -1,12 +1,12 @@
 .navbar.navbar-fixed-top
   .navbar-inner
-    .container-fluid
+    .container
       a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
         span.icon-bar
         span.icon-bar
         span.icon-bar
       a.brand href="/" RECORDMMENDER
-      .container-fluid.nav-collapse
+      .nav-collapse
         ul.nav
           li = link_to t('activerecord.models.item'), items_path
 
@@ -16,6 +16,3 @@
           - else
             li = link_to t('menu.signin'), signin_path
             li = link_to t('menu.signup'), signup_path
-
-
-
