@@ -37,7 +37,8 @@ ja:
         good: 良い
         normal: 普通
         bad: 悪い
-        very_bad とても悪い
+        very_bad: とても悪い
+        make: 評価する
 
       seeing:
         touch: :activerecord.models.touch

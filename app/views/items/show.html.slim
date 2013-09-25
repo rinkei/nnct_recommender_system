@@ -32,7 +32,7 @@ h1  = @item.name
 
   .looks_rating
     h2 = t('activerecord.models.looks_rating')
-    - rating_score_types.each_with_index do |score_mean, i|
+    - rating_score_means.each_with_index do |score_mean, i|
       .rate
         = link_to score_mean, item_ratings_path(@item, rating: {type: "LooksRating", score: (5 - i)}), method: 'post'
 
