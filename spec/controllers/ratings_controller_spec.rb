@@ -21,6 +21,11 @@ describe RatingsController do
         Rating.any_instance.should_receive(:save!)
         post :create, {item_id: item.to_param, rating: @rating_attr}
       end
+
+      it "creates touch of a current user and an item." do
+        Touch.should_receive(:create!)
+        post :create, {item_id: item.to_param, rating: @rating_attr}
+      end
     end
 
     describe "when no user is sign in" do

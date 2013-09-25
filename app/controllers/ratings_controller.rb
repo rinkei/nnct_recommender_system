@@ -10,6 +10,8 @@ class RatingsController < ApplicationController
     @rating.user = current_user
 
     ActiveRecord::Base.transaction do
+      @touch = Touch.create!(user: current_user, item: @item)
+      @rating.touch = @touch      
       @rating.save!
     end
 

@@ -14,6 +14,10 @@ class ItemsController < ApplicationController
     @rating = Rating.new
 
     if current_user
+      @user_last_general_rating = GeneralRating.where(item: @item, user: current_user).last
+      @user_last_usability_rating = UsabilityRating.where(item: @item, user: current_user).last
+      @user_last_looks_rating = LooksRating.where(item: @item, user: current_user).last
+
       ActiveRecord::Base.transaction do
         @touch = Touch.create!(user: current_user, item: @item)
         SeeingPage.create!(touch: @touch)

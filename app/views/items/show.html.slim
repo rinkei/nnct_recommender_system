@@ -1,25 +1,38 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @item.name
+h1  = @item.name
+
+- if current_user && (@user_last_general_rating || @user_last_usability_rating || @user_last_looks_rating)
+  h2 = t('activerecord.attributes.rating.yours')
+  - if @user_last_general_rating
+    h3 = t('activerecord.models.general_rating')
+    = @user_last_general_rating.value
+
+  - if @user_last_usability_rating
+    h3 = t('activerecord.models.usability_rating')
+    = @user_last_usability_rating.value
+
+  - if @user_last_looks_rating
+    h3 = t('activerecord.models.looks_rating')
+    = @user_last_looks_rating.value    
 
 .rating
+  h2 = t('activerecord.attributes.rating.make')
   .general_rating
-    h2 総合評価
-    - %w(とても良い 良い ふつう 悪い とても悪い).each_with_index do |val_text, i|
+    h3 = t('activerecord.models.general_rating')
+    - rating_value_types.each_with_index do |val_text, i|
       .rate
         = link_to val_text, item_ratings_path(@item, rating: {type: "GeneralRating", value: (5 - i)}), method: 'post'
 
   .usability_rating
-    h2 ユーザビリティ（使いやすさ）
-    - %w(とても良い 良い ふつう 悪い とても悪い).each_with_index do |val_text, i|
+    h2 = t('activerecord.models.usability_rating')
+    - rating_value_types.each_with_index do |val_text, i|
       .rate
         = link_to val_text, item_ratings_path(@item, rating: {type: "UsabilityRating", value: (5 - i)}), method: 'post'
 
   .looks_rating
-    h2 デザイン（見た目）
-    - %w(とても良い 良い ふつう 悪い とても悪い).each_with_index do |val_text, i|
+    h2 = t('activerecord.models.looks_rating')
+    - rating_value_types.each_with_index do |val_text, i|
       .rate
         = link_to val_text, item_ratings_path(@item, rating: {type: "LooksRating", value: (5 - i)}), method: 'post'
 
