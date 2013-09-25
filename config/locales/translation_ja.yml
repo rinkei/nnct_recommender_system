@@ -1,0 +1,62 @@
+ja:
+  activerecord:
+    models:
+      general_rating: 総合評価
+      item: アイテム
+      looks_rating: デザイン
+      rating: 評価
+      seeing: 閲覧
+      seeing_page: ページ閲覧
+      touch: 接触
+      usability_rating: ユーザビリティ
+      user: ユーザ
+
+    attributes:
+      general_rating:
+        item: :activerecord.models.item
+        touch: :activerecord.models.touch
+        user: :activerecord.models.user
+        score: スコア
+
+      item:
+        name: アイテム名
+        ratings: 評価
+
+      looks_rating:
+        item: :activerecord.models.item
+        touch: :activerecord.models.touch
+        user: :activerecord.models.user
+        score: スコア
+
+      rating:
+        item: :activerecord.models.item
+        touch: :activerecord.models.touch
+        user: :activerecord.models.user
+        score: スコア
+        very_good: とても良い
+        good: 良い
+        normal: 普通
+        bad: 悪い
+        very_bad とても悪い
+
+      seeing:
+        touch: :activerecord.models.touch
+
+      seeing_page:
+        touch: :activerecord.models.touch
+
+      touch:
+        item: :activerecord.models.item
+        ratings: 評価
+        seeings: 閲覧
+        user: :activerecord.models.user
+
+      usability_rating:
+        item: :activerecord.models.item
+        touch: :activerecord.models.touch
+        user: :activerecord.models.user
+        score: スコア
+
+      user:
+        email: Eメールアドレス
+        password_digest: password_digest  #g
