@@ -1,0 +1,21 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container-fluid
+      a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.brand href="/" RECORDMMENDER
+      .container-fluid.nav-collapse
+        ul.nav
+          li = link_to t('activerecord.models.item'), items_path
+
+        ul.nav.pull-right
+          - if current_user
+            li = link_to t('menu.signout'), signout_path, method: 'delete'
+          - else
+            li = link_to t('menu.signin'), signin_path
+            li = link_to t('menu.signup'), signup_path
+
+
+
