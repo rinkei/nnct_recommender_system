@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20130923222056) do
     t.integer  "item_id"
     t.integer  "user_id"
     t.string   "type"
-    t.integer  "value"
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "touch_id"

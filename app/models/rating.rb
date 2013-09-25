@@ -14,9 +14,9 @@ class Rating < ActiveRecord::Base
         when "type"
           cond = cond ? cond.and(rtng[:type].eq(val)) : rtng[:type].eq(val)
         when "bottom"
-          cond = cond ? cond.and(rtng[:value].gteq(val)) : rtng[:value].gteq(val)
+          cond = cond ? cond.and(rtng[:score].gteq(val)) : rtng[:score].gteq(val)
         when "top"
-          cond = cond ? cond.and(rtng[:value].lteq(val)) : rtng[:value].lteq(val)
+          cond = cond ? cond.and(rtng[:score].lteq(val)) : rtng[:score].lteq(val)
         end
       end
     end
@@ -36,7 +36,7 @@ class Rating < ActiveRecord::Base
         line << Rating.nil_to_str(rating.item.name)
         line << Rating.nil_to_str(rating.user.email)
         line << Rating.nil_to_str(rating.type)
-        line << Rating.nil_to_str(rating.value)
+        line << Rating.nil_to_str(rating.score)
         csv << line
       end
     end
@@ -49,7 +49,7 @@ class Rating < ActiveRecord::Base
     header << 'Item'
     header << 'User'
     header << 'Type'
-    header << 'Value'
+    header << 'Score'
     header
   end
 

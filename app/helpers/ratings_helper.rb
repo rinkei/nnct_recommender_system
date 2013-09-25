@@ -1,5 +1,5 @@
 module RatingsHelper
-  def rating_value_types
+  def rating_score_means
     [t('activerecord.attributes.rating.very_good'),
      t('activerecord.attributes.rating.good'),
      t('activerecord.attributes.rating.normal'),

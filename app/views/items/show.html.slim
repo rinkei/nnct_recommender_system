@@ -6,35 +6,35 @@ h1  = @item.name
   h2 = t('activerecord.attributes.rating.yours')
   - if @user_last_general_rating
     h3 = t('activerecord.models.general_rating')
-    = @user_last_general_rating.value
+    = @user_last_general_rating.score
 
   - if @user_last_usability_rating
     h3 = t('activerecord.models.usability_rating')
-    = @user_last_usability_rating.value
+    = @user_last_usability_rating.score
 
   - if @user_last_looks_rating
     h3 = t('activerecord.models.looks_rating')
-    = @user_last_looks_rating.value    
+    = @user_last_looks_rating.score    
 
 .rating
   h2 = t('activerecord.attributes.rating.make')
   .general_rating
     h3 = t('activerecord.models.general_rating')
-    - rating_value_types.each_with_index do |val_text, i|
+    - rating_score_means.each_with_index do |score_mean, i|
       .rate
-        = link_to val_text, item_ratings_path(@item, rating: {type: "GeneralRating", value: (5 - i)}), method: 'post'
+        = link_to score_mean, item_ratings_path(@item, rating: {type: "GeneralRating", score: (5 - i)}), method: 'post'
 
   .usability_rating
     h2 = t('activerecord.models.usability_rating')
-    - rating_value_types.each_with_index do |val_text, i|
+    - rating_score_means.each_with_index do |score_mean, i|
       .rate
-        = link_to val_text, item_ratings_path(@item, rating: {type: "UsabilityRating", value: (5 - i)}), method: 'post'
+        = link_to score_mean, item_ratings_path(@item, rating: {type: "UsabilityRating", score: (5 - i)}), method: 'post'
 
   .looks_rating
     h2 = t('activerecord.models.looks_rating')
-    - rating_value_types.each_with_index do |val_text, i|
+    - rating_score_types.each_with_index do |score_mean, i|
       .rate
-        = link_to val_text, item_ratings_path(@item, rating: {type: "LooksRating", value: (5 - i)}), method: 'post'
+        = link_to score_mean, item_ratings_path(@item, rating: {type: "LooksRating", score: (5 - i)}), method: 'post'
 
 
 = link_to 'Back', items_path

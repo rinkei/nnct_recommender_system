@@ -5,6 +5,6 @@ FactoryGirl.define do
     item nil
     user nil
     type "GeneralRating"
-    value 1
+    score 1
   end
 end

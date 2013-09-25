@@ -11,13 +11,13 @@ h1 Listing ratings
 table
   tr
     th type
-    th value
+    th score
     th user
 
   - @ratings.each do |rating|
     tr
       td = rating.type
-      td = rating.value
+      td = rating.score
       td = rating.user.email
 
 br
