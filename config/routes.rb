@@ -2,6 +2,10 @@ Recommender::Application.routes.draw do
   root to: "items#index"
 
   resources :items, only: %w(index show) do
+    collection do
+      get 'recommended'
+    end
+
     resources :ratings, only: %w(create)
   end
 
