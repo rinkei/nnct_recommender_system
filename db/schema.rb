@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923222056) do
+ActiveRecord::Schema.define(version: 20131008050754) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20130923222056) do
 
   add_index "touches", ["item_id"], name: "index_touches_on_item_id"
   add_index "touches", ["user_id"], name: "index_touches_on_user_id"
+
+  create_table "user_similarities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "target_id"
+    t.float    "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_similarities", ["target_id"], name: "index_user_similarities_on_target_id"
+  add_index "user_similarities", ["user_id"], name: "index_user_similarities_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email"
