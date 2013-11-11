@@ -26,6 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def recommended
+    @items = Item.recommended_for(current_user)
   end
 
   private
