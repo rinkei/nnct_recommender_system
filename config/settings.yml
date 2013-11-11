@@ -1,0 +1,10 @@
+defaults: &defaults
+  recommender_num: 5
+development:
+  <<: *defaults
+test:
+  <<: *defaults
+staging:
+  <<: *defaults
+production:
+  <<: *defaults
