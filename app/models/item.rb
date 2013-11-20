@@ -23,6 +23,6 @@ class Item < ActiveRecord::Base
 
     # return recommend items 
     items = Item.find(sorted_ids) - user.rated_items
-    items = sorted_ids.collect{|id| items.detect{|item| item.id == id}}
+    items = sorted_ids.collect{|id| items.detect{|item| item.id == id}}.compact
   end
 end
