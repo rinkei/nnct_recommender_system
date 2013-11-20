@@ -7,7 +7,7 @@ task calculate_similarity: :environment do
   @users.each do |user|
     @targets.each do |trgt|
       # 新規ユーザーで見つからなかった場合はユーザ類似度モデルを作成
-      next if user == trgt
+      next if user.id == trgt.id
       us = UserSimilarity.find_or_create_by!(user: user, target: trgt)
 
       user_ratings_absolute_value_sum = 0 # ユーザ評価値の二乗の和の平方根
