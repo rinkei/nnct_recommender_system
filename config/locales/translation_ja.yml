@@ -32,12 +32,14 @@ ja:
         item: :activerecord.models.item
         touch: :activerecord.models.touch
         user: :activerecord.models.user
+        yours: あなたの評価
         score: スコア
         very_good: とても良い
         good: 良い
         normal: 普通
         bad: 悪い
         very_bad: とても悪い
+        not_evaluated: 未評価
         make: 評価する
 
       seeing:

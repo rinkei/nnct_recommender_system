@@ -2,18 +2,29 @@
   h1  = @item.name
 
   - if current_user && (@user_last_general_rating || @user_last_usability_rating || @user_last_looks_rating)
-    h2 = t('activerecord.attributes.rating.yours')
-    - if @user_last_general_rating
-      h3 = t('activerecord.models.general_rating')
-      = @user_last_general_rating.score
+    .user_rating
+      h2 = t('activerecord.attributes.rating.yours')
+      .row-fluid
+        .span4.general_rating
+          h3 = t('activerecord.models.general_rating')
+          - if @user_last_general_rating
+            = mean_of_score(@user_last_general_rating.score)
+          - else
+            = t('activerecord.attributes.rating.not_evaluated')
 
-    - if @user_last_usability_rating
-      h3 = t('activerecord.models.usability_rating')
-      = @user_last_usability_rating.score
+        .span4.usability_rating
+          h3 = t('activerecord.models.usability_rating')
+          - if @user_last_usability_rating
+            = mean_of_score(@user_last_usability_rating.score)
+          - else
+            = t('activerecord.attributes.rating.not_evaluated')
 
-    - if @user_last_looks_rating
-      h3 = t('activerecord.models.looks_rating')
-      = @user_last_looks_rating.score    
+        .span4.looks_rating
+          h3 = t('activerecord.models.looks_rating')
+          - if @user_last_looks_rating
+            = mean_of_score(@user_last_looks_rating.score)   
+          - else
+            = t('activerecord.attributes.rating.not_evaluated')
 
   .rating
     h2 = t('activerecord.attributes.rating.make')
@@ -38,3 +49,4 @@
 
 
   = link_to 'Back', items_path
+

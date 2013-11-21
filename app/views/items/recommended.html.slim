@@ -1,7 +1,11 @@
 h1 = t('action.items.recommended')
 
 .list.items_list
-  - @items.each do |item|
-    .item
-      h2.title
-        = link_to item.name, item
+  - if @items.present?
+    - @items.each do |item|
+      .item
+        h2.title
+          = link_to item.name, item
+  - else
+    'あなたへのオススメはまだありません。
+

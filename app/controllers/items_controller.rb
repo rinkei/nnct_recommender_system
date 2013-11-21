@@ -26,7 +26,11 @@ class ItemsController < ApplicationController
   end
 
   def recommended
-    @items = Item.recommended_for(current_user)
+    if current_user
+      @items = Item.recommended_for(current_user)
+    else
+      redirect_to signin_path, alert: "Please, sign in"
+    end
   end
 
   private
