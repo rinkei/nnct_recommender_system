@@ -1,6 +1,14 @@
 .item
   h1  = @item.name
 
+  .row-fluid
+    h2 = t('activerecord.attributes.item.aim')
+    .body == conv_break @item.aim
+
+    h2 = t('activerecord.attributes.item.introduction')
+    .body == conv_break @item.introduction 
+
+
   - if current_user && (@user_last_general_rating || @user_last_usability_rating || @user_last_looks_rating)
     .user_rating
       h2 = t('activerecord.attributes.rating.yours')

@@ -21,6 +21,8 @@ ja:
       item:
         name: アイテム名
         ratings: 評価
+        aim: 講義の目的
+        introduction: 講義の概要
 
       looks_rating:
         item: :activerecord.models.item
