@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126141350) do
+ActiveRecord::Schema.define(version: 20131127014247) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(version: 20131126141350) do
     t.datetime "updated_at"
     t.text     "introduction"
     t.text     "aim"
-    t.string   "grade"
+    t.integer  "grade"
+    t.string   "department"
   end
 
   create_table "ratings", force: true do |t|
@@ -65,8 +66,11 @@ ActiveRecord::Schema.define(version: 20131126141350) do
   add_index "user_similarities", ["user_id"], name: "index_user_similarities_on_user_id"
 
   create_table "users", force: true do |t|
+    t.string   "handle"
+    t.string   "name"
     t.string   "email"
-    t.string   "password_digest"
+    t.integer  "grade"
+    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

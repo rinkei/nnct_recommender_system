@@ -1,38 +1,36 @@
-h1 = t('action.items.index')
+.row-fluid
+  .span6
+    a onclick='mySwipe.prev()' prev
+  .span6 style='text-align: right;'
+    a onclick='mySwipe.next()' next
 
 #slider.swipe
   .swipe-wrap
     - @items.each do |item|
-      div
-        h1  = "#{item.grade}:#{item.name}"
+      .item
+        .row-fluid
+          h1.title  = "#{item.grade}:#{item.name}"
+
+        .row-fluid
+          .span6
+            h2 = t('activerecord.attributes.rating.yours')
+            - if rating = item.ratings.where('user_id = ?', current_user.try(:id)).first
+              = mean_of_score(rating.score)
+            - else
+              = t('activerecord.attributes.rating.not_evaluated')
+
+          .span6
+            h2 = t('activerecord.attributes.rating.make')
+            - rating_score_means.each_with_index do |score_mean, i|
+              .rate
+                = link_to score_mean, item_ratings_path(item, rating: {type: "GeneralRating", score: (5 - i)}), method: 'post'
 
         .row-fluid
           .span6
             h2 = t('activerecord.attributes.item.aim')
             .body == conv_break item.aim
-          
+
+          .span6
             h2 = t('activerecord.attributes.item.introduction')
             .body == conv_break item.introduction 
 
-          .span6
-            .user_rating
-              h2 = t('activerecord.attributes.rating.yours')
-              .row-fluid
-                .span4.general_rating
-                  h3 = t('activerecord.models.general_rating')
-                  - if rating = item.ratings.where('user_id = ?', current_user.try(:id)).first
-                    = mean_of_score(rating.score)
-                  - else
-                    = t('activerecord.attributes.rating.not_evaluated')
-
-            .rating
-              h2 = t('activerecord.attributes.rating.make')
-              .row-fluid
-                .span4.general_rating
-                  h3 = t('activerecord.models.general_rating')
-                  - rating_score_means.each_with_index do |score_mean, i|
-                    .rate
-                      = link_to score_mean, item_ratings_path(item, rating: {type: "GeneralRating", score: (5 - i)}), method: 'post'
-div style='text-align:center;padding-top:20px;'
-  button onclick='mySwipe.prev()' prev 
-  button onclick='mySwipe.next()' next

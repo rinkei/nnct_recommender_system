@@ -4,13 +4,13 @@ class SessionController < ApplicationController
   end
 
   def create
-    @user = User.where(email: user_params[:email]).first
-    if @user.present? && @user.authenticate(user_params[:password])
+    @user = User.where(name: user_params[:name]).first
+    if @user.present?
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Signed in"
     else
       @user = User.new(user_params)
-      flash.now.alert = "Invalid email or password"
+      flash.now.alert = "Invalid name"
       render "new"
     end
   end
@@ -21,7 +21,7 @@ class SessionController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:email, :password)
-    end
+  def user_params
+    params.require(:user).permit(:email, :password)
+  end
 end

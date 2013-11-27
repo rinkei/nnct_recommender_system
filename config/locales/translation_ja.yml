@@ -63,5 +63,9 @@ ja:
         score: スコア
 
       user:
-        email: Eメールアドレス
-        password_digest: password_digest  #g
+        handle: ユーザID(半角英数字)
+        name: 氏名
+        email: Eメールアドレス(任意)
+        grade: 学年
+        subject: 学科・専攻
+

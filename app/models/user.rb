@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   has_many :user_similarities, ->(user) { where("target_id IS NOT ?", user.id).order("value desc") }
   has_many :similar_users, ->(user) { where("user_similarities.value > ?", user.similarity_threshold) }, through: :user_similarities, source: :target
 
-  has_secure_password
-  validates_presence_of :password, on: :create
+  validates_uniqueness_of :handle
+  validates_presence_of :handle, :name, :grade, :department
 
   attr_accessor :similarity_threshold
 

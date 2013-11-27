@@ -5,7 +5,11 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.includes(:ratings)
+    if current_user
+      @items = Item.includes(:ratings).where(grade: current_user.grade, department: current_user.department)
+    else
+      @items = Item.includes(:ratings)
+    end
   end
 
   # GET /items/1
