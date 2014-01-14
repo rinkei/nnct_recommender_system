@@ -16,4 +16,4 @@
 /tmp
 
 # Ignore emacs temporary files.
-/*\~
+*~
