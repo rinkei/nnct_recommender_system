@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe AuthenticationController do
-  let(:valid_attributes) { { "email"                 => "userA@example.com", 
-                             "password"              => "password",
-                             "password_confirmation" => "password" } }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:user) }
 
   describe "GET new" do
     it "assigns a new user as @user" do

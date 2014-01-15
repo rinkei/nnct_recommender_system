@@ -4,7 +4,7 @@ class SessionController < ApplicationController
   end
 
   def create
-    @user = User.where(name: user_params[:name]).first
+    @user = User.find_by(handle: user_params[:handle])
     if @user.present?
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Signed in"
@@ -22,6 +22,6 @@ class SessionController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:handle)
   end
 end

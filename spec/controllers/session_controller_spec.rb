@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SessionController do
-  let(:valid_attributes) { { "email" => "userA@example.com", "password" => "password" } }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:user) }
 
   describe "GET new" do
     it "assigns a new user as @user" do
@@ -14,22 +14,22 @@ describe SessionController do
     describe "with valid params" do
       describe "of a persisted user" do
         it "assigns the requested user as @user" do
-          user = User.create! valid_attributes.merge({ password_confirmation: "password" })
-          post :create, {:user => valid_attributes}
+          user = FactoryGirl.create(:user)
+          post :create, {:user => {:handle => user.handle}}
           assigns(:user).should be_a(User)
           assigns(:user).should be_persisted
         end
 
         it "redirects to root" do
-          user = User.create! valid_attributes.merge({ password_confirmation: "password" })
-          post :create, {:user => valid_attributes}
+          user = FactoryGirl.create(:user)
+          post :create, {:user => {:handle => user.handle}}
           response.should redirect_to(root_path)
         end
       end
 
       describe "of not persisted user" do
         it "assigns the requested user but not found in tables" do
-          post :create, {:user => { "email" => "notExistUser@example.com", "password" => "password" }}
+          post :create, {:user => {:handle => "not_persisted"}}
           assigns(:user).should be_a_new(User)
         end
       end
@@ -37,7 +37,7 @@ describe SessionController do
 
     describe "with invalid params" do
       it "assigns the requested user but has invalid params" do
-        post :create, {:user => { "password" => "password" }}
+        post :create, {:user => FactoryGirl.attributes_for(:invalid_attributes_user)}
         assigns(:user).should be_a_new(User)
       end
     end
