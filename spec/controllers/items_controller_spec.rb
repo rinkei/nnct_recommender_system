@@ -37,10 +37,12 @@ describe ItemsController do
 
   describe "GET recommended" do
     describe "when a user is sign in" do
+      let(:current_user){ FactoryGirl.create(:user) }
       let(:recommended_item){ FactoryGirl.create(:item) }
-      let(:non_recommended_item){ FactoryGirl.create(:item) }
 
       it "assigns the recommended items as @items" do
+        controller.stub(:current_user).and_return(current_user)
+        Item.should_receive(:recommended_for).with(current_user).and_return([recommended_item])
         get :recommended
         assigns(:items).should eq [recommended_item]
       end
